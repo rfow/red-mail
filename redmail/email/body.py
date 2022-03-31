@@ -9,7 +9,7 @@ from pathlib import Path
 from redmail.utils import is_bytes
 from redmail.utils import import_from_string
 
-from email.utils import make_msgid, parseaddr
+from email.utils import parseaddr
 
 from jinja2.environment import Template, Environment
 
@@ -248,3 +248,14 @@ class HTMLBody(Body):
                 cid=cid,
                 **kwds
             )
+
+def make_msgid(idstring, domain=None):
+    """ Overrided original function to provide a means by which the cid can be specified.
+    This was required to loop through defined images in a jinja template.
+    """
+    timeval = datetime.datetime.today().date().strftime('%Y%m%d')
+    pid = '1973824650'
+    if domain is None:
+        domain = socket.getfqdn()
+    msgid = f"{('.'.join([idstring, timeval, pid]))}@{domain}"
+    return msgid
