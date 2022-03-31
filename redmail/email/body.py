@@ -163,7 +163,7 @@ class HTMLBody(Body):
 
         # Define CIDs for images
         cids = {
-            name: make_msgid(domain=domain)
+            name: make_msgid(id_string=name, domain=domain)
             for name in images
         }
         html_images = {
