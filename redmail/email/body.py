@@ -4,6 +4,7 @@ from io import BytesIO
 from pathlib import Path
 from typing import TYPE_CHECKING, Dict, Union, ByteString
 from pathlib import Path
+import datetime
 
 
 from redmail.utils import is_bytes
